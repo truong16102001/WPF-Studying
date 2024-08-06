@@ -1,0 +1,48 @@
+﻿<Window x:Class="Data_Binding.BindingCollection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Data_Binding"
+        mc:Ignorable="d"
+        Title="BindingCollection" Height="450" Width="800">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+        
+            <Label Grid.Row="0" Grid.Column="0" Margin="30 20" FontWeight="Bold">ProductId</Label>
+            <TextBox x:Name="ProductId" Width="200" Margin="0 20"
+                     DataContext="{Binding SelectedItem,ElementName=lvProducts}"
+                     Text="{Binding ProductId, Mode=OneWay}"></TextBox>
+            <Label Grid.Row="0" Grid.Column="1" Margin="10 20"  FontWeight="Bold">ProductName</Label>
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="ProductName" Width="200" 
+                     Margin="0 20" DataContext="{Binding SelectedItem, ElementName=lvProducts}"
+                     Text="{Binding ProductName, Mode=TwoWay}"></TextBox>
+        <Label Grid.Row="1" Grid.Column="0" Margin="30 20"  FontWeight="Bold">Category</Label>
+        <ComboBox x:Name="cbCategory" Grid.Row="1" Grid.Column="0" 
+                  Width="200" Margin="20 20" ItemsSource="{Binding Categories}"
+                  SelectedValuePath="CategoryId" 
+                  DisplayMemberPath="CategoryName"
+                  DataContext="{Binding SelectedItem, ElementName=lvProducts}"
+                  SelectedValue="{Binding CategoryId, Mode=OneWay}"></ComboBox>
+                
+        <ListView x:Name="lvProducts" Grid.ColumnSpan="2" Grid.Row="2" HorizontalContentAlignment="Center" Margin="10" Height="Auto" Width="Auto">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="150" DisplayMemberBinding="{Binding Path=ProductId}"/>
+                    <GridViewColumn  Header="Name" Width="350" DisplayMemberBinding="{Binding Path=ProductName}"/>
+                    <GridViewColumn Header="Category" Width="300" DisplayMemberBinding="{Binding Path=Category.CategoryName}"/>
+                    <GridViewColumn  Width="0" DisplayMemberBinding="{Binding Path=CateogoryId}"  />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
