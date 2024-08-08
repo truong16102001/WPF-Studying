@@ -85,7 +85,7 @@ namespace Data_Binding {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Data-Binding;component/bindingcollection.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Data-Binding;V1.0.0.0;component/bindingcollection.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\BindingCollection.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
